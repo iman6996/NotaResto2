@@ -10,7 +10,7 @@ class CityController extends AbstractController
 { 
     /** 
     * * Affiche la liste de toutes les villes 
-     * @Route("/city", name="city_index")
+     * @Route("/city", name="city_index",methods={"GET"})
      */
     public function index()
     {
@@ -30,7 +30,7 @@ class CityController extends AbstractController
 
     /**
      * Traite la requête d'un formulaire de création d'une ville
-     * @Route("/city", name="city_create", methods={"POST"})
+     * @Route("/city/new", name="city_create", methods={"POST"})
      */
     public function create()
     {
