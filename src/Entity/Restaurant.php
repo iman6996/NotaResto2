@@ -102,6 +102,20 @@ class Restaurant
         return $this->city;
     }
 
+    public function getAverageRating() : float
+{
+
+    $sum = 0;
+    $total = 0;
+
+    foreach($this->getFeedbacks() as $feedback) {
+        $sum += $feedback->getFeedback();
+        $total++;
+    }
+
+    return $sum/$total;
+}
+
     public function setCity(?City $city): self
     {
         $this->city = $city;
