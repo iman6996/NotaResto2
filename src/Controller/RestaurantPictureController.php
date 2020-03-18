@@ -9,7 +9,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class RestaurantPictureController extends AbstractController
 {
     /**
-     * @Route("/restaurant/picture", name="restaurant_picture" methods={"GET"})
+     * @Route("/restaurant/picture", name="restaurant_picture" , methods={"GET"})
      */
     public function index()
     {
