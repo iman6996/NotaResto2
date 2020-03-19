@@ -1,23 +1,49 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}NotaResto{% endblock %}
-
 {% block body %}
-<div class="container ">
-    <ul class="list-unstyled">
-        <u>
-            <h1 class="text-center text-success p-4">NotaResto</h1>
-        </u>
-        {% for restaurant in restaurants %}
-        
-            <li><div class="col-8 my-3">
-                {{ restaurant.name }}<br></div>
-                <div class="col-8"><small class="">{{ restaurant.description }}</small></div>
-            </li> <hr>
-        
-        {% endfor %}
+        <section class="jumbotron text-center">
+            {% for restaurant in restaurants %}
+                {% if loop.first %}
+                    <div class="container">
+                        <h1>Notre meilleur restaurant est...</h1>
+                        <h2><strong>{{ restaurant.name }} !</strong> <small class="badge badge-danger">{{ restaurant.averageRating | number_format(2, ',') }} sur 5 étoiles !</small></h2>
+                        <p class="lead text-muted">
+                            {{ restaurant.description }}
+                        </p>
+                        <p>
+                            <a href="#" class="btn btn-dark my-2">Donner un avis !</a>
+                        </p>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </section>
 
-    </ul>
-</div>
+        <div class="album py-5 bg-light">
+            <div class="container">
+
+                <div class="row">
+                    {% for restaurant in restaurants %}
+                        {% if not loop.first %}
+                            <div class="col-md-4">
+                                <div class="card mb-4 shadow-sm">
+                                    <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
+                                    <div class="card-body">
+                                        <p class="card-text">
+                                            <h2>{{restaurant.name}}</h2>
+                                                <small class="badge badge-danger">{{ restaurant.averageRating | number_format(2, ',') }} sur 5 étoiles !</small>
+                                                {{ restaurant.description }}
+                                        </p>
+
+                                        <div class="d-flex justify-content-between float-right">
+                                            <a href="#" class="btn btn-sm btn-outline-secondary">Donner un avis</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
 
 {% endblock %}
