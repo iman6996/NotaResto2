@@ -49,13 +49,7 @@ class Restaurant
      */
     private $feedbacks;
 
-    public function __construct()
-    {
-        $this->setCreatedAt(new \DateTime());
-        $this->restaurantPictures = new ArrayCollection();
-        $this->feedbacks = new ArrayCollection();
-    }
-
+    
     public function getId(): ?int
     {
         return $this->id;
@@ -107,13 +101,18 @@ class Restaurant
 
     $sum = 0;
     $total = 0;
+  
+   
 
     foreach($this->getFeedbacks() as $feedback) {
-        $sum += $feedback->getFeedback();
+        $sum += $feedback->getRating();
         $total++;
     }
+    if ($total > 0) {
+        return $sum/$total;
+    }
 
-    return $sum/$total;
+    return 0;
 }
 
     public function setCity(?City $city): self
@@ -121,6 +120,12 @@ class Restaurant
         $this->city = $city;
 
         return $this;
+    }
+public function __construct()
+    {
+        $this->setCreatedAt(new \DateTime());
+        $this->restaurantPictures = new ArrayCollection();
+        $this->feedbacks = new ArrayCollection();
     }
 
     /**

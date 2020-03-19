@@ -15,7 +15,7 @@ class RestaurantController extends AbstractController
     public function index()
     {
         return $this->render('restaurant/index.html.twig', [
-            'controller_name' => 'RestaurantController',
+            'restaurants' => $this->getDoctrine()->getRepository(Restaurant::class)->findAll(),
         ]);
     }
     /**
