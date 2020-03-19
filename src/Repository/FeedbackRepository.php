@@ -18,6 +18,18 @@ class FeedbackRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Feedback::class);
     }
+    public function findBestTenRatings() {
+
+        return $this->createQueryBuilder('r')
+            ->select('restaurant.id as restaurantId')
+            ->innerJoin('r.restaurant', 'restaurant')
+            ->groupBy('restaurant')
+            ->orderBy('AVG(r.rating)', 'DESC')
+            ->setMaxResults(10)
+            ->getQuery()
+            ->getResult()
+            ;
+    }
 
     // /**
     //  * @return Feedback[] Returns an array of Feedback objects
